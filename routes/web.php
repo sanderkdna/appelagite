@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\ColorSchemeController;
+use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,4 +105,61 @@ Route::middleware('auth')->group(function() {
         Route::get('slider-page', 'slider')->name('slider');
         Route::get('image-zoom-page', 'imageZoom')->name('image-zoom');
     });
+});
+
+Route::group([
+    'prefix' => 'topics',
+], function () {
+    Route::get('/', [TopicsController::class, 'index'])
+         ->name('topics.topic.index');
+    Route::get('/create', [TopicsController::class, 'create'])
+         ->name('topics.topic.create');
+    Route::get('/show/{topic}',[TopicsController::class, 'show'])
+         ->name('topics.topic.show')->where('id', '[0-9]+');
+    Route::get('/{topic}/edit',[TopicsController::class, 'edit'])
+         ->name('topics.topic.edit')->where('id', '[0-9]+');
+    Route::post('/', [TopicsController::class, 'store'])
+         ->name('topics.topic.store');
+    Route::put('topic/{topic}', [TopicsController::class, 'update'])
+         ->name('topics.topic.update')->where('id', '[0-9]+');
+    Route::delete('/topic/{topic}',[TopicsController::class, 'destroy'])
+         ->name('topics.topic.destroy')->where('id', '[0-9]+');
+});
+
+Route::group([
+    'prefix' => 'messages',
+], function () {
+    Route::get('/', [MessagesController::class, 'index'])
+         ->name('messages.message.index');
+    Route::get('/create', [MessagesController::class, 'create'])
+         ->name('messages.message.create');
+    Route::get('/show/{message}',[MessagesController::class, 'show'])
+         ->name('messages.message.show')->where('id', '[0-9]+');
+    Route::get('/{message}/edit',[MessagesController::class, 'edit'])
+         ->name('messages.message.edit')->where('id', '[0-9]+');
+    Route::post('/', [MessagesController::class, 'store'])
+         ->name('messages.message.store');
+    Route::put('message/{message}', [MessagesController::class, 'update'])
+         ->name('messages.message.update')->where('id', '[0-9]+');
+    Route::delete('/message/{message}',[MessagesController::class, 'destroy'])
+         ->name('messages.message.destroy')->where('id', '[0-9]+');
+});
+
+Route::group([
+    'prefix' => 'settings',
+], function () {
+    Route::get('/', [SettingsController::class, 'index'])
+         ->name('settings.setting.index');
+    Route::get('/create', [SettingsController::class, 'create'])
+         ->name('settings.setting.create');
+    Route::get('/show/{setting}',[SettingsController::class, 'show'])
+         ->name('settings.setting.show')->where('id', '[0-9]+');
+    Route::get('/{setting}/edit',[SettingsController::class, 'edit'])
+         ->name('settings.setting.edit')->where('id', '[0-9]+');
+    Route::post('/', [SettingsController::class, 'store'])
+         ->name('settings.setting.store');
+    Route::put('setting/{setting}', [SettingsController::class, 'update'])
+         ->name('settings.setting.update')->where('id', '[0-9]+');
+    Route::delete('/setting/{setting}',[SettingsController::class, 'destroy'])
+         ->name('settings.setting.destroy')->where('id', '[0-9]+');
 });
