@@ -39,9 +39,10 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Topic</th>
-                            <th>User</th>
+                            <th>Fecha</th>
+                            <th>Tema</th>
+                            <th>Cliente</th>
+                            <th>Mensaje</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                             <td>{{ $message->date }}</td>
                             <td>{{ $message->topic }}</td>
                             <td>{{ $message->user }}</td>
+                            <td>{{ $message->message }}</td>
                             <!--
                             <td>
                                 <form method="POST" action="{!! route('messages.message.destroy', $message->id) !!}" accept-charset="UTF-8">
