@@ -23,6 +23,8 @@ use App\Http\Controllers\SettingsController;
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 Route::get('color-scheme-switcher/{color_scheme}', [ColorSchemeController::class, 'switch'])->name('color-scheme-switcher');
 
+Route::get('temadeldia', [TopicsController::class, 'temaDelDia'])->name('temadeldia');
+
 Route::controller(AuthController::class)->middleware('loggedin')->group(function() {
     Route::get('login', 'loginView')->name('login.index');
     Route::post('login', 'login')->name('login.check');

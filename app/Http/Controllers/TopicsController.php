@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicsFormRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Topic;
 use Exception;
 
@@ -132,6 +133,22 @@ class TopicsController extends Controller
 
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+        }
+    }
+
+    public function temaDelDia(){
+        try {
+
+            $id = date("Y-m-d");
+
+            $topic = DB::table('topics')
+            ->where('date', '=', $id)
+            ->get();
+
+            return $topic;
+
+        } catch (Exception $e) {
+
         }
     }
 
