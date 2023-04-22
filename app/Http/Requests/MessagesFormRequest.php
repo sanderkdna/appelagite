@@ -28,7 +28,7 @@ class MessagesFormRequest extends FormRequest
             'date' => 'string|min:1|nullable',
             'topic' => 'string|min:1|nullable',
             'user' => 'string|min:1|nullable',
-            'message' => 'numeric|nullable',
+            'message' => 'string|nullable',
         ];
 
         return $rules;

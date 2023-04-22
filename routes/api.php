@@ -33,5 +33,7 @@ Route::group([
 ], function ($router) {
     Route::get('/topic',[TopicController::class, 'index'])->name('index');
     Route::get('/status',[TopicController::class, 'getStatus'])->name('status');
+    Route::get('/getmessage',[TopicController::class, 'getMessage'])->name('getmessage');
+    Route::post('/savemessage',[TopicController::class, 'saveMessage'])->name('savemessage');
 
 });
